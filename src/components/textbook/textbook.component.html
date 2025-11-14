@@ -1,0 +1,95 @@
+
+<div class="max-w-6xl mx-auto bg-white rounded-xl shadow-lg min-h-[600px]">
+  <!-- Header -->
+  <div class="border-b p-4 bg-gradient-to-r from-red-600 to-red-700 rounded-t-xl">
+    <h1 class="text-2xl font-bold text-white">Giáo trình Chủ nghĩa Xã hội Khoa học</h1>
+    <p class="text-sm text-red-100 mt-1">(Dành cho bậc đại học hệ không chuyên lý luận chính trị)</p>
+  </div>
+
+  <!-- Loading State -->
+  @if (isLoading()) {
+    <div class="flex items-center justify-center py-20">
+      <div class="text-center">
+        <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-red-600 mx-auto mb-4"></div>
+        <p class="text-gray-600">Đang tải giáo trình...</p>
+      </div>
+    </div>
+  }
+
+  <!-- PDF Viewer -->
+  <div class="p-4">
+    <!-- Toolbar -->
+    <div class="flex flex-col sm:flex-row justify-between items-stretch sm:items-center mb-4 p-3 bg-gray-50 rounded-lg gap-3">
+      <!-- Navigation -->
+      <div class="flex items-center gap-2 flex-wrap">
+        <button 
+          (click)="previousPage()"
+          [disabled]="currentPage() === 1"
+          class="px-3 py-1.5 bg-red-600 text-white rounded hover:bg-red-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors text-sm whitespace-nowrap">
+          ← Trước
+        </button>
+        
+        <div class="flex items-center gap-2 px-3">
+          <input 
+            type="number" 
+            [value]="currentPage()"
+            (change)="goToPage(+$any($event.target).value)"
+            min="1"
+            [max]="totalPages()"
+            class="w-16 px-2 py-1 border rounded text-center">
+          <span class="text-gray-600">/ {{ totalPages() }}</span>
+        </div>
+
+        <button 
+          (click)="nextPage()"
+          [disabled]="currentPage() === totalPages()"
+          class="px-3 py-1.5 bg-red-600 text-white rounded hover:bg-red-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors text-sm whitespace-nowrap">
+          Sau →
+        </button>
+      </div>
+
+      <!-- Zoom Controls -->
+      <div class="flex items-center gap-2 flex-wrap">
+        <button 
+          (click)="zoomOut()"
+          class="px-3 py-1.5 bg-gray-200 text-gray-700 rounded hover:bg-gray-300 transition-colors text-sm">
+          −
+        </button>
+        <span class="text-sm text-gray-600 min-w-[60px] text-center">{{ (zoom() * 100).toFixed(0) }}%</span>
+        <button 
+          (click)="zoomIn()"
+          class="px-3 py-1.5 bg-gray-200 text-gray-700 rounded hover:bg-gray-300 transition-colors text-sm">
+          +
+        </button>
+        <button 
+          (click)="resetZoom()"
+          class="px-3 py-1.5 bg-gray-200 text-gray-700 rounded hover:bg-gray-300 transition-colors text-sm whitespace-nowrap">
+          Reset
+        </button>
+      </div>
+    </div>
+
+    <!-- PDF Display -->
+    <div class="border rounded-lg overflow-auto bg-gray-100 flex justify-center min-h-[700px]">
+      <pdf-viewer 
+        [src]="pdfSrc"
+        [page]="currentPage()"
+        [zoom]="zoom()"
+        [show-all]="false"
+        [original-size]="false"
+        [fit-to-page]="false"
+        [render-text]="true"
+        [autoresize]="true"
+        [external-link-target]="'blank'"
+        (after-load-complete)="onPdfLoad($event)"
+        (error)="onPdfError($event)"
+        style="display: block; width: 100%; height: auto;">
+      </pdf-viewer>
+    </div>
+
+    <!-- Page Info -->
+    <div class="mt-4 text-center text-sm text-gray-600">
+      Trang {{ currentPage() }} / {{ totalPages() }}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,59 @@
+<div class="loading-container bg-gradient-to-br from-red-600 via-red-500 to-yellow-500 min-h-screen flex items-center justify-center relative overflow-hidden">
+  <!-- Animated background decorations -->
+  <div class="absolute inset-0 opacity-10">
+    <div class="absolute top-10 left-10 w-40 h-40 bg-white rounded-full blur-3xl animate-pulse"></div>
+    <div class="absolute bottom-20 right-10 w-60 h-60 bg-yellow-300 rounded-full blur-3xl animate-pulse" style="animation-delay: 1s"></div>
+  </div>
+
+  <!-- Content -->
+  <div class="relative z-10 text-center max-w-md px-6">
+    <!-- Logo with scale-in animation -->
+    <div class="mb-8 flex justify-center logo-container" #logoContainer [class.logo-fly-to-header]="startLogoAnimation()" [ngStyle]="logoAnimationStyle()">
+      <div class="bg-white rounded-full p-6 shadow-2xl">
+        <img 
+          src="/logo.png" 
+          alt="SOCIO-MIND Logo" 
+          class="h-24 w-24 object-contain"
+        />
+      </div>
+    </div>
+
+    <!-- Title with slide-up animation -->
+    <h1 class="text-4xl md:text-5xl font-bold text-white mb-3 drop-shadow-lg title-main">
+      Web học tập
+    </h1>
+    <h2 class="text-2xl md:text-3xl font-bold text-yellow-100 mb-8 drop-shadow-lg title-sub">
+      Chủ Nghĩa Xã Hội Khoa Học
+    </h2>
+
+    <!-- Loading spinner with rotation animations -->
+    <div class="flex justify-center mb-6">
+      <div class="relative w-16 h-16">
+        <!-- Outer rotating ring -->
+        <div class="absolute inset-0 border-4 border-transparent border-t-white border-r-white rounded-full spinner-outer"></div>
+        <!-- Inner rotating ring (opposite direction) -->
+        <div class="absolute inset-2 border-4 border-transparent border-b-yellow-200 border-l-yellow-200 rounded-full spinner-inner"></div>
+      </div>
+    </div>
+
+    <!-- Loading text with fade-in animation -->
+    <p class="text-white text-lg font-medium drop-shadow-lg loading-text">
+      Đang tải trang chủ...
+    </p>
+
+    <!-- Loading dots animation -->
+    <div class="flex justify-center gap-1 mt-4">
+      <span class="inline-block w-2 h-2 bg-white rounded-full dot-1"></span>
+      <span class="inline-block w-2 h-2 bg-white rounded-full dot-2"></span>
+      <span class="inline-block w-2 h-2 bg-white rounded-full dot-3"></span>
+    </div>
+
+    <!-- Tagline with fade-in animation -->
+    <p class="text-white text-sm mt-8 opacity-90 tagline">
+      Nền tảng học tập và ôn luyện
+    </p>
+  </div>
+
+  <!-- Bottom accent with expand animation -->
+  <div class="absolute bottom-0 left-0 right-0 h-1 bg-yellow-400 drop-shadow-lg bottom-bar"></div>
+</div>

@@ -1,0 +1,96 @@
+<div class="p-6 md:p-8 bg-gray-50 h-full rounded-lg overflow-y-auto">
+  <div class="max-w-7xl mx-auto">
+    <h1 class="text-3xl font-bold text-gray-800 mb-2">Trung tâm Ôn tập</h1>
+    <p class="text-lg text-gray-500 mb-8">
+      Chọn một bài ôn tập để bắt đầu kiểm tra kiến thức của bạn.
+    </p>
+
+    <!-- Comprehensive Quiz Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
+      <!-- Comprehensive MC Quiz Card -->
+      <div
+        class="bg-red-600 text-white rounded-xl shadow-lg p-8 flex flex-col justify-between"
+      >
+        <div>
+          <h2 class="text-2xl font-bold mb-2">Ôn tập trắc nghiệm tổng hợp</h2>
+          <p class="text-red-100">
+            Bao gồm tất cả câu hỏi trắc nghiệm từ các chương để bạn kiểm tra
+            kiến thức tổng quát.
+          </p>
+        </div>
+        <button
+          (click)="startComprehensiveMcQuiz()"
+          class="mt-6 w-full bg-white text-red-600 font-bold px-6 py-3 rounded-lg hover:bg-red-50 transition-transform transform hover:scale-105"
+        >
+          Bắt đầu trắc nghiệm
+        </button>
+      </div>
+
+      <!-- Comprehensive Matching Quiz Card -->
+      <div
+        class="bg-sky-600 text-white rounded-xl shadow-lg p-8 flex flex-col justify-between"
+      >
+        <div>
+          <h2 class="text-2xl font-bold mb-2">Ôn tập nối từ tổng hợp</h2>
+          <p class="text-sky-100">
+            Thực hành nối các khái niệm và định nghĩa quan trọng từ toàn bộ môn
+            học.
+          </p>
+        </div>
+        <button
+          (click)="startComprehensiveMatchingQuiz()"
+          class="mt-6 w-full bg-white text-sky-600 font-bold px-6 py-3 rounded-lg hover:bg-sky-50 transition-transform transform hover:scale-105"
+        >
+          Bắt đầu nối từ
+        </button>
+      </div>
+    </div>
+
+    <!-- Chapter Quizzes -->
+    <h2 class="text-2xl font-bold text-gray-800 mb-6">
+      Ôn tập theo từng chương
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      @for (chapter of chaptersWithQuizInfo(); track chapter.id) {
+        <div
+          class="bg-white rounded-lg shadow-md p-6 flex flex-col justify-between border hover:border-gray-200 transition-all"
+        >
+          <div>
+            <h3 class="font-bold text-lg text-gray-800">{{ chapter.title }}</h3>
+            <div class="text-sm text-gray-500 mt-2 space-y-1">
+              @if (chapter.mcCount > 0) {
+                <p>• {{ chapter.mcCount }} câu trắc nghiệm</p>
+              }
+              @if (chapter.matchingCount > 0) {
+                <p>• {{ chapter.matchingCount }} bài tập nối từ</p>
+              }
+            </div>
+          </div>
+          <div class="mt-6 w-full space-y-2">
+            @if (chapter.mcCount > 0) {
+              <button
+                (click)="startChapterQuiz(chapter, 'multiple-choice')"
+                class="w-full bg-red-50 text-red-700 font-semibold px-4 py-2 rounded-lg hover:bg-red-100 transition-colors"
+              >
+                Trắc nghiệm
+              </button>
+            }
+            @if (chapter.matchingCount > 0) {
+              <button
+                (click)="startChapterQuiz(chapter, 'matching')"
+                class="w-full bg-sky-50 text-sky-700 font-semibold px-4 py-2 rounded-lg hover:bg-sky-100 transition-colors"
+              >
+                Nối từ
+              </button>
+            }
+            @if (chapter.mcCount === 0 && chapter.matchingCount === 0) {
+              <p class="text-sm text-center text-gray-400">
+                Chưa có bài ôn tập
+              </p>
+            }
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</div>

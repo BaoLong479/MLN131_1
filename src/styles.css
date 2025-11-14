@@ -1,0 +1,449 @@
+/* Chatbot content styling */
+.chatbot-content {
+  color: #1f2937;
+  line-height: 1.8;
+  font-size: 0.95rem;
+}
+
+/* Paragraphs */
+.chatbot-content p {
+  margin-bottom: 0.75rem;
+  text-align: left;
+}
+
+.chatbot-content p:last-child {
+  margin-bottom: 0;
+}
+
+/* Headings */
+.chatbot-content h1,
+.chatbot-content h2,
+.chatbot-content h3,
+.chatbot-content h4 {
+  font-weight: 700;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+  color: #111827;
+}
+
+.chatbot-content h1 {
+  font-size: 1.5rem;
+  border-bottom: 2px solid #dc2626;
+  padding-bottom: 0.5rem;
+}
+
+.chatbot-content h2 {
+  font-size: 1.3rem;
+  color: #dc2626;
+}
+
+.chatbot-content h3 {
+  font-size: 1.15rem;
+  color: #b91c1c;
+}
+
+.chatbot-content h4 {
+  font-size: 1rem;
+  color: #991b1b;
+}
+
+/* Strong/Bold text */
+.chatbot-content strong,
+.chatbot-content b {
+  color: #dc2626;
+  font-weight: 700;
+}
+
+/* Emphasis/Italic text */
+.chatbot-content em,
+.chatbot-content i {
+  font-style: italic;
+  color: #374151;
+}
+
+/* Code blocks */
+.chatbot-content code {
+  background-color: #f3f4f6;
+  padding: 0.2rem 0.4rem;
+  border-radius: 0.25rem;
+  font-size: 0.9em;
+  font-family: 'Courier New', monospace;
+  color: #dc2626;
+}
+
+.chatbot-content pre {
+  background-color: #f3f4f6;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+  margin-bottom: 1rem;
+}
+
+.chatbot-content pre code {
+  background-color: transparent;
+  padding: 0;
+  color: #1f2937;
+}
+
+/* Ordered Lists - Numbered */
+.chatbot-content ol {
+  margin-left: 1.5rem;
+  margin-bottom: 1rem;
+  counter-reset: item;
+  list-style: none;
+}
+
+.chatbot-content ol>li {
+  margin-bottom: 0.75rem;
+  counter-increment: item;
+  position: relative;
+  padding-left: 0.5rem;
+}
+
+.chatbot-content ol>li::before {
+  content: counter(item) ". ";
+  font-weight: 700;
+  color: #dc2626;
+  position: absolute;
+  left: -1.5rem;
+}
+
+/* Nested ordered lists */
+.chatbot-content ol ol {
+  margin-left: 1.5rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Unordered Lists - Bullets */
+.chatbot-content ul {
+  margin-left: 1.5rem;
+  margin-bottom: 1rem;
+  list-style: none;
+}
+
+.chatbot-content ul>li {
+  margin-bottom: 0.5rem;
+  position: relative;
+  padding-left: 0.5rem;
+}
+
+.chatbot-content ul>li::before {
+  content: "•";
+  color: #dc2626;
+  font-weight: 700;
+  font-size: 1.2em;
+  position: absolute;
+  left: -1rem;
+}
+
+/* Nested lists */
+.chatbot-content ul ul,
+.chatbot-content ol ul,
+.chatbot-content ul ol {
+  margin-left: 1.5rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+/* List items */
+.chatbot-content li {
+  line-height: 1.6;
+}
+
+.chatbot-content li p {
+  margin-bottom: 0.5rem;
+}
+
+/* Code blocks */
+.chatbot-content code {
+  background-color: #fee2e2;
+  padding: 0.15rem 0.4rem;
+  border-radius: 0.25rem;
+  font-size: 0.9em;
+  color: #991b1b;
+  font-family: 'Courier New', monospace;
+}
+
+.chatbot-content pre {
+  background-color: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  overflow-x: auto;
+}
+
+.chatbot-content pre code {
+  background-color: transparent;
+  padding: 0;
+  color: #374151;
+}
+
+/* Blockquotes */
+.chatbot-content blockquote {
+  border-left: 4px solid #dc2626;
+  background-color: #fef2f2;
+  padding: 0.75rem 1rem;
+  margin: 1rem 0;
+  color: #4b5563;
+  font-style: italic;
+  border-radius: 0.25rem;
+}
+
+.chatbot-content blockquote p {
+  margin-bottom: 0.5rem;
+}
+
+.chatbot-content blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+/* Citation/Reference styling - in square brackets */
+.chatbot-content em {
+  color: #6b7280;
+  font-size: 0.875em;
+  font-style: italic;
+}
+
+/* Links */
+.chatbot-content a {
+  color: #dc2626;
+  text-decoration: underline;
+  font-weight: 500;
+}
+
+.chatbot-content a:hover {
+  color: #991b1b;
+}
+
+/* Tables */
+.chatbot-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1rem;
+}
+
+.chatbot-content th,
+.chatbot-content td {
+  border: 1px solid #e5e7eb;
+  padding: 0.5rem;
+  text-align: left;
+}
+
+.chatbot-content th {
+  background-color: #fee2e2;
+  font-weight: 700;
+  color: #991b1b;
+}
+
+/* Horizontal rule */
+.chatbot-content hr {
+  border: none;
+  border-top: 2px solid #e5e7eb;
+  margin: 1.5rem 0;
+}
+
+/* Custom scrollbar for sidebar */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(239, 68, 68, 0.3);
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(239, 68, 68, 0.5);
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* Animation for AI suggestions */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+  /* Header adjustments */
+  .header-content {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .header-logo {
+    justify-content: flex-start;
+    flex: 1;
+  }
+
+  .header-logo img {
+    height: 2.5rem !important;
+  }
+
+  .header-logo h1 {
+    font-size: 1rem !important;
+  }
+
+  .header-logo p {
+    font-size: 0.65rem !important;
+  }
+
+  /* View switcher buttons */
+  .view-switcher {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .view-switcher::-webkit-scrollbar {
+    display: none;
+  }
+
+  .view-switcher button {
+    padding: 0.5rem 0.75rem !important;
+    font-size: 0.75rem !important;
+    white-space: nowrap;
+  }
+
+  /* Chatbot content */
+  .chatbot-content {
+    font-size: 0.875rem;
+  }
+
+  .chatbot-content h1 {
+    font-size: 1.25rem;
+  }
+
+  .chatbot-content h2 {
+    font-size: 1.1rem;
+  }
+
+  .chatbot-content h3 {
+    font-size: 1rem;
+  }
+
+  .chatbot-content h4 {
+    font-size: 0.9rem;
+  }
+
+  /* Adjust list margins on mobile */
+  .chatbot-content ol,
+  .chatbot-content ul {
+    margin-left: 1rem;
+  }
+
+  /* Adjust padding for main content */
+  main {
+    padding-bottom: 80px !important;
+  }
+
+  /* Make tables responsive */
+  .chatbot-content table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .chatbot-content th,
+  .chatbot-content td {
+    padding: 0.4rem;
+    font-size: 0.875rem;
+  }
+}
+
+/* Mobile sidebar overlay */
+.mobile-sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 40;
+}
+
+.mobile-sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 80%;
+  max-width: 320px;
+  background-color: white;
+  z-index: 50;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-in-out;
+  overflow-y: auto;
+}
+
+.mobile-sidebar.open {
+  transform: translateX(0);
+}
+
+/* Mobile menu button */
+.mobile-menu-btn {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .mobile-menu-btn {
+    display: inline-flex;
+  }
+}
+
+/* Typing cursor animation for chatbot */
+.typing-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  background-color: #dc2626;
+  margin-left: 2px;
+  animation: blink 1s infinite;
+  vertical-align: text-bottom;
+}
+
+@keyframes blink {
+  0%, 49% {
+    opacity: 1;
+  }
+  50%, 100% {
+    opacity: 0;
+  }
+}
+
+/* Gradient animation for AI button */
+@keyframes gradient-x {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.animate-gradient-x {
+  background-size: 200% 200%;
+  animation: gradient-x 3s ease infinite;
+}

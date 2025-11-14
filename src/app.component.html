@@ -1,0 +1,179 @@
+<!-- Loading Page -->
+@if (isLoading()) {
+  <app-loading-page (loadingComplete)="onLoadingComplete()"></app-loading-page>
+}
+
+<div class="flex flex-col min-h-screen bg-gray-100" [class.hidden]="isLoading()">
+  <!-- Header -->
+  <header class="bg-white shadow-md z-10 relative">
+    <div class="header-content py-3 px-3 sm:py-4 sm:px-6 lg:px-8 flex justify-between items-center">
+      <div class="header-logo flex items-center gap-2 sm:gap-4">
+        <img
+          src="/logo.png"
+          alt="SOCIO-MIND Logo"
+          class="h-8 sm:h-12 w-auto"
+          style="mix-blend-mode: multiply"
+        />
+        <div class="hidden sm:block">
+          <h1 class="text-lg sm:text-2xl font-bold text-red-700">
+            Chủ nghĩa Xã hội Khoa học
+          </h1>
+          <p class="text-xs sm:text-sm text-gray-500">Nền tảng học tập và ôn luyện</p>
+        </div>
+      </div>
+      <!-- View Switcher -->
+      <div class="view-switcher flex items-center gap-1 sm:gap-2 p-1 bg-gray-200 rounded-lg">
+        <button
+          (click)="setView('learn')"
+          class="px-2 sm:px-4 py-1 sm:py-1.5 rounded-md text-xs sm:text-sm font-semibold transition-colors"
+          [class.bg-white]="currentView() === 'learn'"
+          [class.text-gray-800]="currentView() === 'learn'"
+          [class.text-gray-500]="currentView() !== 'learn'"
+        >
+          Bài học
+        </button>
+        <button
+          (click)="setView('quiz')"
+          class="px-2 sm:px-4 py-1 sm:py-1.5 rounded-md text-xs sm:text-sm font-semibold transition-colors"
+          [class.bg-white]="currentView() === 'quiz'"
+          [class.text-gray-800]="currentView() === 'quiz'"
+          [class.text-gray-500]="currentView() !== 'quiz'"
+        >
+          Ôn tập
+        </button>
+        <button
+          (click)="setView('game')"
+          class="px-2 sm:px-4 py-1 sm:py-1.5 rounded-md text-xs sm:text-sm font-semibold transition-colors"
+          [class.bg-white]="currentView() === 'game'"
+          [class.text-gray-800]="currentView() === 'game'"
+          [class.text-gray-500]="currentView() !== 'game'"
+        >
+          Trò chơi
+        </button>
+        <button
+          (click)="setView('textbook')"
+          class="px-2 sm:px-4 py-1 sm:py-1.5 rounded-md text-xs sm:text-sm font-semibold transition-colors"
+          [class.bg-white]="currentView() === 'textbook'"
+          [class.text-gray-800]="currentView() === 'textbook'"
+          [class.text-gray-500]="currentView() !== 'textbook'"
+        >
+          Giáo trình
+        </button>
+        <button
+          (click)="setView('mindmap')"
+          class="px-2 sm:px-4 py-1 sm:py-1.5 rounded-md text-xs sm:text-sm font-semibold transition-colors"
+          [class.bg-white]="currentView() === 'mindmap'"
+          [class.text-gray-800]="currentView() === 'mindmap'"
+          [class.text-gray-500]="currentView() !== 'mindmap'"
+        >
+          Sơ đồ tư duy
+        </button>
+        <!-- Photo Restore temporarily hidden -->
+        <!-- <button
+          (click)="setView('photo-restore')"
+          class="px-4 py-1.5 rounded-md text-sm font-semibold transition-colors"
+          [class.bg-white]="currentView() === 'photo-restore'"
+          [class.text-gray-800]="currentView() === 'photo-restore'"
+          [class.text-gray-500]="currentView() !== 'photo-restore'"
+        >
+          Xuyên Nét
+        </button> -->
+      </div>
+    </div>
+  </header>
+
+  <!-- Content area with sidebar and main -->
+  <div class="flex flex-1 overflow-hidden">
+    <!-- Sidebar -->
+    @if (currentView() === "learn") {
+      <app-sidebar
+        [chapters]="chapters()"
+        [activeView]="currentView()"
+        [initialCollapsed]="true"
+        (sectionSelected)="onSectionSelect($event)"
+      >
+      </app-sidebar>
+    }
+
+    <!-- Main Content -->
+    <main class="flex-1 flex flex-col overflow-y-auto">
+      <!-- Main View Area -->
+      <div class="flex-1 px-4 pt-2 pb-4 md:px-6 md:pt-6 md:pb-6">
+        @if (currentView() === "learn") {
+          <div class="pb-6">
+            @if (currentSection(); as section) {
+              <app-content-viewer
+                [section]="section"
+                (textSelectedForChat)="askChatbot($event)"
+              ></app-content-viewer>
+            } @else {
+              <div
+                class="h-full flex flex-col items-center justify-center text-center text-gray-500"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-24 w-24 mb-4 text-gray-300"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  stroke-width="1"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"
+                  />
+                </svg>
+                <h2 class="text-2xl font-semibold mb-2 text-gray-800">
+                  Chào mừng bạn đến với trang học tập
+                </h2>
+                <p class="max-w-md mb-6">
+                  Hãy chọn một mục từ thanh bên trái để bắt đầu học.
+                </p>
+              </div>
+            }
+          </div>
+        } @else if (currentView() === "quiz") {
+          @if (activeQuiz(); as quiz) {
+            <app-quiz
+              [title]="quiz.title"
+              [questions]="quiz.questions"
+              (quizClosed)="closeQuiz()"
+            >
+            </app-quiz>
+          } @else {
+            <app-quiz-selection
+              [chapters]="chapters()"
+              (quizSelected)="onQuizSelected($event)"
+            >
+            </app-quiz-selection>
+          }
+        } @else if (currentView() === "game") {
+          <app-game></app-game>
+        }
+        
+        <div class="pb-6" [class.hidden]="currentView() !== 'textbook'">
+          @defer (on immediate) {
+            <app-textbook></app-textbook>
+          }
+        </div>
+
+        <div class="pb-6 -mx-4 md:-mx-6" [class.hidden]="currentView() !== 'mindmap'">
+          @defer (on immediate) {
+            <app-mindmap></app-mindmap>
+          }
+        </div>
+
+        <div class="pb-6" [class.hidden]="currentView() !== 'photo-restore'">
+          @defer (on immediate) {
+            <app-photo-restore></app-photo-restore>
+          }
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<!-- Chatbot -->
+<app-chatbot></app-chatbot>
+

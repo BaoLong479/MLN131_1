@@ -1,0 +1,25 @@
+# Docker deployment ignore
+node_modules
+npm-debug.log
+.git
+.gitignore
+.env
+.env.local
+.env.*.local
+dist
+dist-ssr
+*.local
+.vscode
+.idea
+.DS_Store
+README.md
+DEPLOYMENT.md
+CHECKLIST.md
+CONTRIBUTING.md
+CHANGELOG.md
+*.md
+attached_assets
+Socio-Mind
+.replit
+replit.md
+metadata.json

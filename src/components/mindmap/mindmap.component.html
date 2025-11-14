@@ -1,0 +1,61 @@
+<div class="w-full h-full flex flex-col rounded-lg bg-white">
+  @if (loading()) {
+    <div class="flex items-center justify-center rounded-lg flex-1">
+      <div class="text-center">
+        <div
+          class="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-500 mb-4"
+        ></div>
+        <p class="text-gray-700">Đang tải sơ đồ tư duy...</p>
+      </div>
+    </div>
+  } @else if (rootNode()) {
+    <div class="flex flex-col h-full relative">
+      <!-- Control buttons -->
+      <div class="absolute top-4 left-4 z-10 flex gap-2">
+        <button
+          (click)="expandAll()"
+          class="px-4 py-2 bg-indigo-500 bg-opacity-80 text-white rounded-lg shadow-md hover:bg-opacity-90 hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-opacity-75 transition-all backdrop-blur-sm"
+        >
+          Mở rộng tất cả
+        </button>
+        <button
+          (click)="collapseAll()"
+          class="px-4 py-2 bg-rose-500 bg-opacity-80 text-white rounded-lg shadow-md hover:bg-opacity-90 hover:bg-rose-600 focus:outline-none focus:ring-2 focus:ring-rose-400 focus:ring-opacity-75 transition-all backdrop-blur-sm"
+        >
+          Thu gọn tất cả
+        </button>
+      </div>
+
+      <!-- Mind Map Container -->
+      <div #mindmapContainer class="flex-1 overflow-hidden rounded-lg w-full"></div>
+
+      <!-- Instructions -->
+      <div class="p-3 border-t border-gray-200 bg-gray-50">
+        <p class="text-sm text-gray-600 text-center">
+          Cuộn chuột để phóng to/thu nhỏ • Kéo thả để di chuyển • Click (+/-) để
+          mở rộng/thu gọn nhánh
+        </p>
+      </div>
+    </div>
+  } @else {
+    <div class="flex items-center justify-center flex-1">
+      <div class="text-center">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-16 w-16 mx-auto text-gray-400 mb-4"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+          />
+        </svg>
+        <p class="text-gray-700">Không thể tải sơ đồ tư duy</p>
+      </div>
+    </div>
+  }
+</div>

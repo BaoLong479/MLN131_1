@@ -1,0 +1,43 @@
+{
+  "name": "học-tập-chủ-nghĩa-xã-hội-khoa-học",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "concurrently \"npm run backend\" \"npm run frontend\"",
+    "frontend": "cross-env NG_CLI_ANALYTICS=false ng serve --port 5000 --host 0.0.0.0 --proxy-config proxy.conf.json",
+    "backend": "node -r dotenv/config server/api.js",
+    "build": "cross-env NG_CLI_ANALYTICS=false ng build",
+    "start": "node -r dotenv/config server/api.js"
+  },
+  "dependencies": {
+    "@angular/build": "^20.3.0",
+    "@angular/cli": "^20.3.0",
+    "@angular/common": "^20.3.0",
+    "@angular/compiler": "^20.3.0",
+    "@angular/compiler-cli": "^20.3.0",
+    "@angular/core": "^20.3.0",
+    "@angular/forms": "^20.3.7",
+    "@angular/platform-browser": "^20.3.0",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.5",
+    "concurrently": "^9.2.1",
+    "cors": "^2.8.5",
+    "d3": "^7.9.0",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "marked": "^16.4.2",
+    "ng2-pdf-viewer": "^10.4.0",
+    "ngx-cookie-service": "^20.1.1",
+    "ngx-markdown": "^20.1.0",
+    "openai": "^6.8.1",
+    "rxjs": "^7.8.2",
+    "tailwindcss": "latest"
+  },
+  "devDependencies": {
+    "@types/node": "^22.14.0",
+    "cross-env": "^10.1.0",
+    "typescript": "~5.8.2",
+    "vite": "^6.2.0"
+  }
+}

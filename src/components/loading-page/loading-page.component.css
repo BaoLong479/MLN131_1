@@ -1,0 +1,165 @@
+.loading-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+}
+
+/* Logo scale-in animation */
+@keyframes logoScaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.5) rotate(-10deg);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+/* Logo fly to header animation with CSS variables */
+@keyframes logoFlyToHeader {
+  from {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translate(var(--delta-x, -90vw), var(--delta-y, -80vh)) scale(var(--scale, 0.4));
+  }
+}
+
+.logo-container {
+  animation: logoScaleIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.logo-fly-to-header {
+  animation: logoFlyToHeader 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards !important;
+}
+
+/* Title fade-in and slide-up animation */
+@keyframes titleSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.title-main {
+  animation: titleSlideUp 0.8s ease-out 0.3s forwards;
+  opacity: 0;
+}
+
+.title-sub {
+  animation: titleSlideUp 0.8s ease-out 0.5s forwards;
+  opacity: 0;
+}
+
+/* Spinner animation */
+@keyframes spinnerRotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spinner-outer {
+  animation: spinnerRotate 2s linear infinite;
+}
+
+.spinner-inner {
+  animation: spinnerRotate 1s linear infinite reverse;
+}
+
+/* Loading text fade-in */
+@keyframes textFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.loading-text {
+  animation: textFadeIn 0.8s ease-out 0.7s forwards;
+  opacity: 0;
+}
+
+/* Dots bounce animation */
+@keyframes dotsBounce {
+  0%, 80%, 100% {
+    opacity: 0.5;
+    transform: translateY(0);
+  }
+  40% {
+    opacity: 1;
+    transform: translateY(-10px);
+  }
+}
+
+.dot-1 {
+  animation: dotsBounce 1.4s infinite;
+}
+
+.dot-2 {
+  animation: dotsBounce 1.4s infinite 0.2s;
+}
+
+.dot-3 {
+  animation: dotsBounce 1.4s infinite 0.4s;
+}
+
+/* Tagline fade-in */
+@keyframes taglineFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.tagline {
+  animation: taglineFadeIn 0.8s ease-out 0.9s forwards;
+  opacity: 0;
+}
+
+/* Bottom bar expand animation */
+@keyframes bottomBarExpand {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+.bottom-bar {
+  animation: bottomBarExpand 1s ease-out 0.5s forwards;
+  width: 0;
+}
+
+/* Smooth fade-out animation */
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    visibility: visible;
+  }
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+.fade-out {
+  animation: fadeOut 0.5s ease-in-out forwards;
+}

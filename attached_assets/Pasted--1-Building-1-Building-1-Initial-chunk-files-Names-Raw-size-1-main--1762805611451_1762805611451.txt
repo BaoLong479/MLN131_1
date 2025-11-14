@@ -1,0 +1,40 @@
+[1] ❯ Building...
+[1] ✔ Building...
+[1] Initial chunk files | Names         |  Raw size
+[1] main.js             | main          | 469.08 kB | 
+[1] 
+[1]                     | Initial total | 469.08 kB
+[1] 
+[1] Application bundle generation complete. [5.531 seconds] - 2025-11-10T20:12:51.462Z
+[1] 
+[1] Watch mode enabled. Watching for file changes...
+[1] NOTE: Raw file sizes do not reflect development server per-request transformations.
+[1] 8:12:51 PM [vite] (ssr) Re-optimizing dependencies because lockfile has changed
+[1]   ➜  Local:   http://localhost:5000/
+[1]   ➜  Network: http://172.31.119.34:5000/
+[1] 8:12:52 PM [vite] (client) warning: 
+[1] /home/runner/workspace/.angular/cache/20.3.8/app/vite/deps/ng2-pdf-viewer.js
+[1] 12031 |        const worker = await import(
+[1] 12032 |          /*webpackIgnore: true*/
+[1] 12033 |          this.workerSrc
+[1]       |          ^^^^^^^^^^^^^^
+[1] 12034 |        );
+[1] 12035 |        return worker.WorkerMessageHandler;
+[1] The above dynamic import cannot be analyzed by Vite.
+[1] See https://github.com/rollup/plugins/tree/master/packages/dynamic-import-vars#limitations for supported dynamic import formats. If this is intended to be left as-is, you can use the /* @vite-ignore */ comment inside the import() call to suppress this warning.
+[1] 
+[1]   Plugin: vite:import-analysis
+[1]   File: /home/runner/workspace/.angular/cache/20.3.8/app/vite/deps/ng2-pdf-viewer.js?v=3d6f528e
+[1] 8:12:52 PM [vite] (client) warning: 
+[1] /home/runner/workspace/.angular/cache/20.3.8/app/vite/deps/ng2-pdf-viewer.js
+[1] 26281 |        const sandbox = import(
+[1] 26282 |          /*webpackIgnore: true*/
+[1] 26283 |          sandboxBundleSrc
+[1]       |          ^^^^^^^^^^^^^^^^
+[1] 26284 |        );
+[1] 26285 |        sandbox.then((pdfjsSandbox) => {
+[1] The above dynamic import cannot be analyzed by Vite.
+[1] See https://github.com/rollup/plugins/tree/master/packages/dynamic-import-vars#limitations for supported dynamic import formats. If this is intended to be left as-is, you can use the /* @vite-ignore */ comment inside the import() call to suppress this warning.
+[1] 
+[1]   Plugin: vite:import-analysis
+[1]   File: /home/runner/workspace/.angular/cache/20.3.8/app/vite/deps/ng2-pdf-viewer.js?v=3d6f528e

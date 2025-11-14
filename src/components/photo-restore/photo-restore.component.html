@@ -1,0 +1,194 @@
+<div class="max-w-7xl mx-auto bg-white rounded-xl shadow-lg min-h-[600px] p-6 sm:p-8">
+  <!-- Header -->
+  <div class="border-b pb-6 mb-8">
+    <div class="flex items-center gap-4">
+      <div class="bg-gradient-to-r from-purple-600 to-blue-600 p-3 rounded-lg">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+        </svg>
+      </div>
+      <div>
+        <h1 class="text-3xl font-bold text-gray-900">Xuyên Nét</h1>
+        <p class="text-gray-600 mt-1">Khôi phục và làm nét ảnh cũ với AI</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Instructions -->
+  <div class="bg-gradient-to-r from-purple-50 to-blue-50 border border-purple-200 rounded-lg p-5 mb-8">
+    <div class="flex items-start gap-3">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-purple-600 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+      <div class="flex-1">
+        <h3 class="font-semibold text-purple-900 mb-2">Hướng dẫn sử dụng</h3>
+        <ul class="text-sm text-purple-800 space-y-1">
+          <li>• Tải lên ảnh cũ, mờ, hoặc có độ phân giải thấp</li>
+          <li>• AI sẽ tự động làm nét, tăng độ phân giải và loại bỏ nhiễu</li>
+          <li>• Không thay đổi nội dung, bố cục hay thêm vật thể mới</li>
+          <li>• Kích thước file tối đa: 10MB</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+    <!-- Upload Section -->
+    <div class="space-y-4">
+      <h2 class="text-xl font-bold text-gray-800 flex items-center gap-2">
+        <span class="bg-purple-100 text-purple-700 rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold">1</span>
+        Ảnh gốc
+      </h2>
+
+      @if (!previewUrl()) {
+        <!-- Upload Area -->
+        <label class="flex flex-col items-center justify-center w-full h-96 border-2 border-dashed border-purple-300 rounded-lg cursor-pointer bg-gradient-to-br from-purple-50 to-blue-50 hover:from-purple-100 hover:to-blue-100 transition-all duration-200">
+          <div class="flex flex-col items-center justify-center pt-5 pb-6">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-purple-400 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+            </svg>
+            <p class="mb-2 text-lg font-semibold text-purple-700">
+              <span>Nhấn để chọn ảnh</span>
+            </p>
+            <p class="text-sm text-purple-600">PNG, JPG, JPEG (tối đa 10MB)</p>
+          </div>
+          <input type="file" class="hidden" accept="image/*" (change)="onFileSelected($event)" />
+        </label>
+      } @else {
+        <!-- Preview -->
+        <div class="relative">
+          <img [src]="previewUrl()" alt="Preview" class="w-full h-96 object-contain bg-gray-100 rounded-lg border-2 border-purple-200" />
+          <button 
+            (click)="clearFile()"
+            class="absolute top-2 right-2 bg-red-500 text-white p-2 rounded-full hover:bg-red-600 transition-colors shadow-lg">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+
+        <!-- Process Button -->
+        <button
+          (click)="restorePhoto()"
+          [disabled]="isProcessing()"
+          class="w-full bg-gradient-to-r from-purple-600 to-blue-600 text-white font-bold py-4 px-6 rounded-lg hover:from-purple-700 hover:to-blue-700 disabled:from-gray-400 disabled:to-gray-500 disabled:cursor-not-allowed transition-all duration-200 shadow-lg hover:shadow-xl flex items-center justify-center gap-2">
+          @if (isProcessing()) {
+            <svg class="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+            <span>Đang xử lý... ({{ progress() }}%)</span>
+          } @else {
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+            <span>Làm nét ảnh</span>
+          }
+        </button>
+      }
+
+      <!-- Error Message -->
+      @if (errorMessage()) {
+        <div class="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg flex items-start gap-2">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <span class="text-sm">{{ errorMessage() }}</span>
+        </div>
+      }
+    </div>
+
+    <!-- Result Section -->
+    <div class="space-y-4">
+      <h2 class="text-xl font-bold text-gray-800 flex items-center gap-2">
+        <span class="bg-blue-100 text-blue-700 rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold">2</span>
+        Ảnh đã làm nét
+      </h2>
+
+      @if (restoredImageUrl()) {
+        <!-- Restored Image -->
+        <div class="relative">
+          <img [src]="restoredImageUrl()" alt="Restored" class="w-full h-96 object-contain bg-gray-100 rounded-lg border-2 border-blue-200 shadow-lg" />
+          <div class="absolute top-2 left-2 bg-gradient-to-r from-green-500 to-emerald-500 text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg">
+            ✓ Đã làm nét
+          </div>
+        </div>
+
+        <!-- Download Button -->
+        <button
+          (click)="downloadImage()"
+          class="w-full bg-gradient-to-r from-green-600 to-emerald-600 text-white font-bold py-4 px-6 rounded-lg hover:from-green-700 hover:to-emerald-700 transition-all duration-200 shadow-lg hover:shadow-xl flex items-center justify-center gap-2">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+          </svg>
+          <span>Tải xuống ảnh đã làm nét</span>
+        </button>
+
+        <!-- Info -->
+        <div class="bg-green-50 border border-green-200 rounded-lg p-4">
+          <p class="text-sm text-green-800 flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <span>Ảnh đã được làm nét và cải thiện chất lượng</span>
+          </p>
+        </div>
+      } @else {
+        <!-- Placeholder -->
+        <div class="w-full h-96 border-2 border-dashed border-gray-300 rounded-lg flex flex-col items-center justify-center text-gray-400 bg-gray-50">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-20 w-20 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+          </svg>
+          <p class="text-lg font-medium">Ảnh đã làm nét sẽ hiển thị ở đây</p>
+          <p class="text-sm mt-1">Tải ảnh lên và nhấn "Làm nét ảnh"</p>
+        </div>
+      }
+    </div>
+  </div>
+
+  <!-- Technical Info -->
+  <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
+    <div class="bg-gradient-to-br from-purple-100 to-purple-50 rounded-lg p-4 border border-purple-200">
+      <div class="flex items-center gap-3">
+        <div class="bg-purple-600 p-2 rounded-lg">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
+          </svg>
+        </div>
+        <div>
+          <h4 class="font-bold text-purple-900">AI Enhancement</h4>
+          <p class="text-sm text-purple-700">Công nghệ AI tiên tiến</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-gradient-to-br from-blue-100 to-blue-50 rounded-lg p-4 border border-blue-200">
+      <div class="flex items-center gap-3">
+        <div class="bg-blue-600 p-2 rounded-lg">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+          </svg>
+        </div>
+        <div>
+          <h4 class="font-bold text-blue-900">Bảo mật</h4>
+          <p class="text-sm text-blue-700">Ảnh không lưu trữ</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-gradient-to-br from-green-100 to-green-50 rounded-lg p-4 border border-green-200">
+      <div class="flex items-center gap-3">
+        <div class="bg-green-600 p-2 rounded-lg">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+          </svg>
+        </div>
+        <div>
+          <h4 class="font-bold text-green-900">Nhanh chóng</h4>
+          <p class="text-sm text-green-700">Xử lý trong vài (chục) giây</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
